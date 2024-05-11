@@ -44,3 +44,58 @@ Constraints:
 0 <= nums[i] <= 50
 0 <= val <= 100
  */
+
+/**
+ * @param {number[]} nums
+ * @param {number} val
+ * @return {number}
+ */
+var removeElement = function (nums, val) {
+  let n = 0;
+  for (let index = 0; index < nums.length; index++) {
+    if (nums[index] !== val) {
+      nums[n] = nums[index];
+      n += 1;
+    }
+  }
+  for (let index = n; index < nums.length; index++) {
+    nums[index] = undefined;
+  }
+  console.log(nums);
+  return n;
+};
+function removeElement(nums, val) {
+  let temp = [];
+  let increment = 0;
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] != val) {
+      temp[increment] = nums[i];
+      increment++;
+    }
+  }
+  for (let j = 0; j < nums.length; j++) {
+    nums[j] = temp[j];
+  }
+  console.log(nums);
+  return increment;
+}
+
+/**
+ * @param {number[]} nums
+ * @param {number} val
+ * @return {number}
+ */
+
+var removeElement = function (nums, val) {
+  let n = nums.length;
+  for (let index = 0; index < nums.length; index++) {
+    if (nums[index] == val) {
+      nums[index] = undefined;
+      n -= 1;
+    }
+  }
+  nums.sort();
+  return n;
+};
+
+console.log(removeElement([0, 1, 2, 2, 3, 0, 4, 2], 2));

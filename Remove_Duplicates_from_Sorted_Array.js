@@ -46,18 +46,46 @@ nums is sorted in non-decreasing order.
  * @param {number[]} nums
  * @return {number}
  */
+// var removeDuplicates = function (nums) {
+//   let temp = [];
+//   let n = 0;
+//   for (let index = 0; index < nums.length; index++) {
+//     if (temp.indexOf(nums[index]) < 0) {
+//       temp.push(nums[index]);
+//       n++;
+//     }
+//   }
+//   for (let index = 0; index < nums.length; index++) {
+//     nums[index] = temp[index];
+//   }
+//   return n;
+// };
+/**
+ * j=0          j       i
+ *  * a =[0,1,2,2,1,2,2,3,3,4]
+ *
+ *
+ */
+
+//
+// var removeDuplicates = function (nums) {
+//   let j = 1;
+//   for (let index = 1; index < nums.length; index++) {
+//     nums[index] !== nums[index - 1] && (nums[j++] = nums[index]);
+//   }
+//   console.log(nums);
+//   return j;
+// };
+
 var removeDuplicates = function (nums) {
-  let temp = [];
-  let n = 0;
-  for (let index = 0; index < nums.length; index++) {
-    if (temp.indexOf(nums[index]) < 0) {
-      temp.push(nums[index]);
-      n++;
-    }
+  let j = 1;
+  let count = 0;
+  for (let index = 1; index < nums.length; index++) {
+    nums[index] === nums[index - 1] ? count++ : (count = 0);
+    count <= 1 && (nums[j++] = nums[index]);
   }
-  for (let index = 0; index < nums.length; index++) {
-    nums[index] = temp[index];
-  }
-  return n;
+  console.log(nums);
+  return j;
 };
-console.log(removeDuplicates([1, 1, 2]));
+//
+console.log(removeDuplicates([0, 1, 2, 3, 4, 2, 2, 3, 3, 4]));

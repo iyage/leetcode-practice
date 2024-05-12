@@ -49,22 +49,35 @@ nums is sorted in non-decreasing order.
  * @param {number[]} nums
  * @return {number}
  */
-var removeDuplicates = function (nums) {
-  const map = {};
-  let n = 0;
-  const temp = [];
-  for (let index = 0; index < nums.length; index++) {
-    if (map[nums[index]] < 2 || !map[nums[index]]) {
-      temp.push(nums[index]);
-      !map[nums[index]] ? (map[nums[index]] = 1) : map[nums[index]]++;
-      n++;
-    }
-  }
+// var removeDuplicates = function (nums) {
+//   const map = {};
+//   let n = 0;
+//   const temp = [];
+//   for (let index = 0; index < nums.length; index++) {
+//     if (map[nums[index]] < 2 || !map[nums[index]]) {
+//       temp.push(nums[index]);
+//       !map[nums[index]] ? (map[nums[index]] = 1) : map[nums[index]]++;
+//       n++;
+//     }
+//   }
 
-  for (let index = 0; index < nums.length; index++) {
-    nums[index] = temp[index];
+//   for (let index = 0; index < nums.length; index++) {
+//     nums[index] = temp[index];
+//   }
+//   console.log(nums);
+//   return n;
+// };
+
+var removeDuplicates = function (nums) {
+  let j = 1;
+  let count = 1;
+  for (let index = 1; index < nums.length; index++) {
+    nums[index] === nums[index - 1] ? count++ : (count = 1);
+    count <= 2 && (nums[j++] = nums[index]);
   }
   console.log(nums);
-  return n;
 };
+
+// [0, 0, 1, 1, 1, 1, 2, 3, 3]
+
 console.log(removeDuplicates([0, 0, 1, 1, 1, 1, 2, 3, 3]));
